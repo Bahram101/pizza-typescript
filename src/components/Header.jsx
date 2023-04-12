@@ -1,12 +1,15 @@
 import React from "react";
-import logo  from "../assets/img/pizza-logo.svg";
+import logoSvg from "../assets/img/pizza-logo.svg";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
     <div className="header">
       <div className="container">
         <div className="header__logo">
-          <img width="38" src={logo} alt="Pizza logo" />
+          <Link to="/">
+            <img width="38" src={logoSvg} alt="Pizza logo" />
+          </Link>
           <div>
             <h1 className="text-red-500">React Pizza</h1>
             <p>самая вкусная пицца во вселенной</p>
