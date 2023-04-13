@@ -1,6 +1,7 @@
 @import '../_variables.scss';
 
 .categories {
+  overflow: auto;
   ul {
     display: flex;
 
@@ -13,7 +14,9 @@
       cursor: pointer;
       transition: background-color 0.1s ease-in-out;
       @include noselect();
-
+      @media(max-width: 1060px){
+        padding: 9px 24px;
+      }
       &:hover {
         background-color: darken(#f9f9f9, 2%);
       }
@@ -27,5 +30,19 @@
         color: #fff;
       }
     }
+  }
+  &::-webkit-scrollbar{ 
+    height:7px; 
+    @media(max-width: 730px){
+      height:3px; 
+      // display: none;
+    }
+  }
+  &::-webkit-scrollbar-thumb{ 
+    border-radius: 7px;
+    background-color: #b9b9b9; 
+  }
+  &::-webkit-scrollbar-thumb:hover{  
+    // background-color: green;
   }
 }

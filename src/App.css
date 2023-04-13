@@ -9,6 +9,9 @@
     display: flex;
     justify-content: center;
     margin-top: 50px;
+    @media(max-width: 730px){ 
+      margin-top: 20px;
+    }
   }
 }
 
@@ -17,7 +20,4 @@
 .content .container {
   width: 90%;
 }
-
-.wrapper {
-  margin: unset;
-}
+ 

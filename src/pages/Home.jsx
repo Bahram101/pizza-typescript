@@ -9,21 +9,33 @@ import "../scss/app.scss";
 function Home() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [categoryId, setCategoryId] = useState(0);
+  const [sort, setSort] = useState(0);
 
   useEffect(() => {
-    fetch("https://629dc2ffc6ef9335c0a5514c.mockapi.io/items")
+    setIsLoading(true);
+    fetch(
+      `https://629dc2ffc6ef9335c0a5514c.mockapi.io/items?category=${categoryId}`
+    )
       .then((res) => res.json())
       .then((result) => {
         setItems(result);
         setIsLoading(false);
       });
-  }, []);
+    window.scrollTo(0, 0);
+  }, [categoryId]);
+
+  console.log('cateogryId', categoryId);
+  console.log('sort', sort);
 
   return (
-    <>
+    <div className="container">
       <div className="content__top">
-        <Categories />
-        <Sort />
+        <Categories
+          value={categoryId}
+          onSelect={(id) => setCategoryId(id)}
+        />
+        <Sort value={sort} onSelect={(id) => setSort(id)} />
       </div>
       <h2 className="content__title text-3xl">Все пиццы</h2>
       <div className="content__items">
@@ -31,7 +43,7 @@ function Home() {
           ? [...new Array(6)].map((_, i) => <Skeleton key={i} />)
           : items?.map((obj, i) => <PizzaBlock key={i} {...obj} />)}
       </div>
-    </>
+    </div>
   );
 }
 
