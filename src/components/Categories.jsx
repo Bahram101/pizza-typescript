@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const Categories = ({ value, onSelect }) => { 
+export const Categories = ({ value, onChangeCategory }) => { 
 
   const categoryList = [
     "Все",
@@ -17,7 +17,7 @@ export const Categories = ({ value, onSelect }) => {
         {categoryList.map((categoryName, i) => (
           <li
             key={i}
-            onClick={() => onSelect(i)}
+            onClick={() => onChangeCategory(i)}
             className={value === i ? "active" : ""}
           >
             {categoryName}

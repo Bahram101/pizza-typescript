@@ -26,16 +26,16 @@ function Home() {
   }, [categoryId]);
 
   console.log('cateogryId', categoryId);
-  console.log('sort', sort);
+  // console.log('sort', sort); 
 
   return (
     <div className="container">
       <div className="content__top">
         <Categories
           value={categoryId}
-          onSelect={(id) => setCategoryId(id)}
+          onChangeCategory={(id) => setCategoryId(id)}
         />
-        <Sort value={sort} onSelect={(id) => setSort(id)} />
+        <Sort value={sort} onChangeSort={(id) => setSort(id)} />
       </div>
       <h2 className="content__title text-3xl">Все пиццы</h2>
       <div className="content__items">
