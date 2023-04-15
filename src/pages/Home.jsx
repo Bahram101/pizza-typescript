@@ -10,12 +10,17 @@ function Home() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoryId, setCategoryId] = useState(0);
-  const [sort, setSort] = useState(0);
+  const [sort, setSort] = useState({
+    name: "популярности",
+    sortProperty: "rating",
+  });
 
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://629dc2ffc6ef9335c0a5514c.mockapi.io/items?category=${categoryId}`
+      `https://629dc2ffc6ef9335c0a5514c.mockapi.io/items?${
+        categoryId > 0 ? `category=${categoryId}` : ""
+      }&sortBy=${sort.sortProperty}&order=desc`
     )
       .then((res) => res.json())
       .then((result) => {
@@ -23,10 +28,10 @@ function Home() {
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoryId]);
+  }, [categoryId,sort]);
 
-  console.log('cateogryId', categoryId);
-  // console.log('sort', sort); 
+  console.log("cateogryId", categoryId);
+  console.log("sort", sort.sortProperty);
 
   return (
     <div className="container">
