@@ -6,8 +6,13 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import { SearchContext } from "../layouts/MainLayout";
 import "../scss/app.scss";
 import Pagination from "../components/Pagination";
+import { useSelector, useDispatch } from "react-redux";
 
 function Home() {
+
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.counter.value);
+  
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
