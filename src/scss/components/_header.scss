@@ -12,13 +12,15 @@
       display: flex;
       flex-direction: column;
     }
+    @media(max-width:930px){
+      display: flex;
+      flex-direction: column;
+      gap:10px;
+    }
   }
 
   &__logo {
     display: flex;
-    @media(max-width: 630px){
-      margin-bottom: 20px;
-    }
     img {
       margin-right: 15px;
     }
@@ -34,5 +36,8 @@
     p {
       color: #7b7b7b;
     }
+  }
+  &__cart{
+    margin-left: 10px;
   }
 }

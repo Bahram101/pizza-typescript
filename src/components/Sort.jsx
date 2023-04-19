@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 
+const list = [
+  { name: "популярности (ASC)", sortProperty: "rating" },
+  { name: "популярности (DESC)", sortProperty: "-rating" },
+  { name: "цене (ASC)", sortProperty: "price" },
+  { name: "цене (DESC)", sortProperty: "-price" },
+  { name: "алфавиту (ASC)", sortProperty: "title" },
+  { name: "алфавиту (DESC)", sortProperty: "-title" },
+];
+
 export const Sort = ({ value, onChangeSort }) => {
   const [open, setOpen] = useState(false);
-  const list = [
-    { name: "популярности (ASC)", sortProperty: "rating" },
-    { name: "популярности (DESC)", sortProperty: "-rating" },
-    { name: "цене (ASC)", sortProperty: "price" },
-    { name: "цене (DESC)", sortProperty: "-price" },
-    { name: "алфавиту (ASC)", sortProperty: "title" },
-    { name: "алфавиту (DESC)", sortProperty: "-title" },
-    
-  ];
 
   const onClickListItem = (i) => {
     onChangeSort(i);
     setOpen(false);
   };
- 
 
   return (
     <div className="sort">
@@ -43,7 +42,9 @@ export const Sort = ({ value, onChangeSort }) => {
               <li
                 key={index}
                 onClick={() => onClickListItem(obj)}
-                className={value.sortProperty === obj.sortProperty ? "active" : ""}
+                className={
+                  value.sortProperty === obj.sortProperty ? "active" : ""
+                }
               >
                 {obj.name}
               </li>

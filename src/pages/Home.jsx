@@ -7,51 +7,46 @@ import { SearchContext } from "../layouts/MainLayout";
 import "../scss/app.scss";
 import Pagination from "../components/Pagination";
 import { useSelector, useDispatch } from "react-redux";
+import { setCategoryId, setSort } from "../redux/slices/filterSlice";
+import axios from "axios";
 
 function Home() {
-
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.counter.value);
-  
+  const { searchValue } = useContext(SearchContext);
+  const { categoryId, sort } = useSelector((state) => state.filter);
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [categoryId, setCategoryId] = useState(0);
-  const [sort, setSort] = useState({
-    name: "цене (ASC)",
-    sortProperty: "price",
-  });
-  const { searchValue } = useContext(SearchContext);
 
   const order = sort.sortProperty.includes("-") ? "desc" : "asc";
   const sortBy = sort.sortProperty.replace("-", "");
-  const category = categoryId > 0 ? `category=${categoryId}` : "";
+  const category = categoryId > 0 ? `&category=${categoryId}` : "";
   const search = searchValue ? `&search=${searchValue}` : "";
-
-  console.log('sort', sort);
-  console.log('sortBy', sortBy);
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(
-      `https://629dc2ffc6ef9335c0a5514c.mockapi.io/items?page=${currentPage}&limit=${3}${category}&sortBy=${sortBy}&order=${order}${search}`
-    )
-      .then((res) => res.json())
-      .then((result) => {
-        setItems(result);
+    axios
+      .get(
+        `https://629dc2ffc6ef9335c0a5514c.mockapi.io/items?page=${currentPage}&limit=${4}${category}&sortBy=${sortBy}&order=${order}${search}`
+      )
+      .then(({ data }) => {
+        setItems(data);
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
   }, [categoryId, sort, search, currentPage]);
+
+
+  console.log('searchV',searchValue)
 
   return (
     <div className="container">
       <div className="content__top">
         <Categories
           value={categoryId}
-          onChangeCategory={(id) => setCategoryId(id)}
+          onChangeCategory={(id) => dispatch(setCategoryId(id))}
         />
-        <Sort value={sort} onChangeSort={(id) => setSort(id)} />
+        <Sort value={sort} onChangeSort={(obj) => dispatch(setSort(obj))} />
       </div>
       <h2 className="content__title text-3xl">Все пиццы</h2>
       <div className="content__items">
