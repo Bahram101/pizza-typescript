@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-const list = [
+export const sortList = [
   { name: "популярности (ASC)", sortProperty: "rating" },
   { name: "популярности (DESC)", sortProperty: "-rating" },
   { name: "цене (ASC)", sortProperty: "price" },
@@ -11,14 +11,25 @@ const list = [
 
 export const Sort = ({ value, onChangeSort }) => {
   const [open, setOpen] = useState(false);
+  const sortRef = useRef();
 
   const onClickListItem = (i) => {
     onChangeSort(i);
     setOpen(false);
   };
 
+  useEffect(() => { 
+    const clickBody = (event) => {
+      console.log("listener",event);
+    };
+    document.body.addEventListener("click", clickBody);
+    return () => { 
+      document.body.removeEventListener("click", clickBody);
+    };
+  }, []);
+
   return (
-    <div className="sort">
+    <div className="sort" ref={sortRef}>
       <div className="sort__label">
         <svg
           width="10"
@@ -38,7 +49,7 @@ export const Sort = ({ value, onChangeSort }) => {
       {open && (
         <div className="sort__popup">
           <ul>
-            {list.map((obj, index) => (
+            {sortList.map((obj, index) => (
               <li
                 key={index}
                 onClick={() => onClickListItem(obj)}
