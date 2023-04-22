@@ -19,11 +19,13 @@ export const Sort = ({ value, onChangeSort }) => {
   };
 
   useEffect(() => { 
+    // console.log('mounted');
     const clickBody = (event) => {
-      console.log("listener",event);
+      // console.log("listener",event);
     };
     document.body.addEventListener("click", clickBody);
     return () => { 
+      // console.log('unmounted');
       document.body.removeEventListener("click", clickBody);
     };
   }, []);
