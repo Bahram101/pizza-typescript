@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const PizzaBlock = ({ title, price, imageUrl, sizes, types }) => {
   const [activeType, setActiveType] = useState(0);
