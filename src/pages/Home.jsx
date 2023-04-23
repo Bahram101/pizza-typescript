@@ -14,8 +14,8 @@ import {
   setCurrentPage,
   setFilters,
 } from "../redux/slices/filterSlice";
-import axios from "axios";
 import qs from "qs";
+import { fetchPizzas } from "../redux/slices/pizzaSlice";
 
 function Home() {
   const dispatch = useDispatch();
@@ -26,31 +26,37 @@ function Home() {
   const { categoryId, sort, currentPage } = useSelector(
     (state) => state.filter
   );
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { items, status } = useSelector((state) => state.pizzas);
 
-  const order = sort.sortProperty.includes("-") ? "desc" : "asc";
-  const sortBy = sort.sortProperty.replace("-", "");
-  const category = categoryId > 0 ? `&category=${categoryId}` : "";
   const search = searchValue ? `&search=${searchValue}` : "";
 
-  const fetchPizzas = () => {
-    setIsLoading(true);
-    axios
-      .get(
-        `https://629dc2ffc6ef9335c0a5514c.mockapi.io/items?page=${currentPage}&limit=${4}${category}&sortBy=${sortBy}&order=${order}${search}`
-      )
-      .then(({ data }) => {
-        setItems(data);
-        setIsLoading(false);
-      });
+  console.log('items', items);
+  console.log('status', status);
+
+  const getPizzas = async () => {
+    const sortBy = sort.sortProperty.replace("-", "");
+    const order = sort.sortProperty.includes("-") ? "desc" : "asc";
+    const category = categoryId > 0 ? `category=${categoryId}` : "";
+    const search = searchValue ? `&search=${searchValue}` : "";
+
+    dispatch(
+      fetchPizzas({
+        sortBy,
+        order,
+        category,
+        search,
+        currentPage,
+      })
+    );
+
+    window.scrollTo(0, 0);
   };
 
   // При первом рендере запрашиваем все пиццы
   useEffect(() => {
     window.scrollTo(0, 0);
     if (!isSearch.current) {
-      fetchPizzas();
+      getPizzas();
     }
     isSearch.current = false;
   }, [categoryId, sort, search, currentPage]);
@@ -77,7 +83,7 @@ function Home() {
       dispatch(setFilters({ ...params, sort }));
       isSearch.current = true;
     }
-  }, []); 
+  }, []);
 
   return (
     <div className="container">
@@ -90,7 +96,7 @@ function Home() {
       </div>
       <h2 className="content__title text-3xl">Все пиццы</h2>
       <div className="content__items">
-        {isLoading
+        {status ==='isLoading'
           ? [...new Array(6)].map((_, i) => <Skeleton key={i} />)
           : items
               ?.filter((item) =>
