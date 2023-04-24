@@ -385,8 +385,9 @@ body {
 
   &--empty {
     margin: 80px auto;
-    width: 620px;
+    // width: 620px;
     text-align: center;
+    padding: 30px;
 
     h2 {
       font-size: 36px;
@@ -410,6 +411,12 @@ body {
       display: block;
       width: 300px;
       margin: 45px auto 60px;
+    }
+
+    @media(max-width: 645px){
+      img{
+        width: 70%;
+      }
     }
 
     .button--black {
