@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { Categories } from "../components/Categories";
 import { Sort, sortList } from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";

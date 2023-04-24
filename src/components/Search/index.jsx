@@ -12,7 +12,7 @@ const Search = () => {
   const onClickClear = (event) => {
     setSearchValue("");
     setValue("");
-    inputRef.current?.focus?.();
+    return inputRef.current?.focus?.();
   };
 
   const updateSearchValue = useCallback(

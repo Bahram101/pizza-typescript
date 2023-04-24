@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { clearItems } from "../redux/slices/cartSlice";
@@ -16,12 +17,12 @@ const Cart = () => {
     }
   };
 
-  console.log('items',items)
+  console.log("items", items);
 
   return (
     <div className="container container--cart">
       {items.length === 0 ? (
-        <h1 style={{textAlign:'center', fontSize: 40}}>Корзина пусто</h1>
+        <h1 style={{ textAlign: "center", fontSize: 40 }}>Корзина пусто</h1>
       ) : (
         <div className="cart">
           <div className="cart__top">
