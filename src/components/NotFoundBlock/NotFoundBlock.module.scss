@@ -1,13 +1,14 @@
 .root {
-  h1 {
-    text-align: center;
-    font-size: 24px;
-    .notFound{
-      color:red;
-    }
+  padding: 100px;
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: center;
+
+  span {
+    font-size: 64px;
   }
-  p {
-    text-align: center;
-    margin-top:20px;
-  } 
+}
+
+.description {
+  font-size: 22px;
 }

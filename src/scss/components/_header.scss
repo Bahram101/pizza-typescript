@@ -1,4 +1,4 @@
-@import '../_variables';
+@import "../variables";
 
 .header {
   border-bottom: 1px solid $gray-line;
@@ -8,19 +8,32 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @media(max-width:630px){
+    .header__cart {
+      margin-left: 20px;
+    }
+    @media (max-width: 630px) {
       display: flex;
       flex-direction: column;
     }
-    @media(max-width:930px){
+    @media (max-width: 930px) {
       display: flex;
       flex-direction: column;
-      gap:10px;
+      gap: 10px;
+    }
+
+    @media (max-width: 645px) {
+      flex-direction: column;
+
+      // .header__cart {
+      //   margin-top: 20px;
+      //   margin-left: 20px;
+      // }
     }
   }
 
   &__logo {
     display: flex;
+
     img {
       margin-right: 15px;
     }
@@ -36,8 +49,5 @@
     p {
       color: #7b7b7b;
     }
-  }
-  &__cart{
-    margin-left: 10px;
   }
 }

@@ -1,44 +1,45 @@
 .root {
   position: relative;
+  // left: -120px;
   @media (max-width: 630px) {
     width: 100%;
   }
-  .input {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 8px 20px 8px 35px;
-    width: 400px;
-    border-radius: 7px;
-    font-size: 16px;
-    transition: 0.3s;
-    width: 400px;
-    @media (max-width: 630px) {
-      width: 100%;
-    }
-    // &:focus{
-    //     border: 1px solid rgba(0,0,0,0.5);
-    //     width: 500px;
-    // }
-  }
+}
 
-  .searchIcon {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    opacity: 0.3;
-    position: absolute;
-    left: 10px;
-    top: 10px;
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 12px 20px;
+  padding-left: 42px;
+  width: 400px;
+  border-radius: 10px;
+  font-size: 16px;
+  @media (max-width: 630px) {
+    width: 100%;
   }
-  .closeIcon {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    right: 9px;
-    top: 9px;
-    opacity: 0.5;
-    &:hover {
-      opacity: 0.8;
-      cursor: pointer;
-    }
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.3;
+  position: absolute;
+  left: 14px;
+  top: 12px;
+}
+
+.clearIcon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.3;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
   }
 }

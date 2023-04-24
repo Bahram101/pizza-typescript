@@ -1,4 +1,4 @@
-@import '../_variables.scss';
+@import '../variables';
 
 .sort {
   position: relative;
@@ -11,7 +11,6 @@
     }
 
     b {
-      width: 124px;
       margin-right: 8px;
     }
 
@@ -31,7 +30,6 @@
     border-radius: 10px;
     overflow: hidden;
     padding: 10px 0;
-    width: 160px;
 
     ul {
       overflow: hidden;
