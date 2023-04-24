@@ -5,6 +5,17 @@
 
 body {
   background-color: $background;
+  &::-webkit-scrollbar {
+    width: 7px;
+    @media (max-width: 730px) {
+      height: 3px;
+      // display: none;
+    }
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 7px;
+    background-color: #b3b3b3;
+  }
 }
 
 .wrapper {
@@ -127,7 +138,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap:10px;
+    gap: 10px;
     .fullPizzaImg {
       width: 80%;
     }
@@ -413,8 +424,8 @@ body {
       margin: 45px auto 60px;
     }
 
-    @media(max-width: 645px){
-      img{
+    @media (max-width: 645px) {
+      img {
         width: 70%;
       }
     }
